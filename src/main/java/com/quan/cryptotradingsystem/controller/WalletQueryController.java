@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class WalletQueryController {
 
-  private final WalletQueryService walletQueryService;
+    private final WalletQueryService walletQueryService;
 
-  @Autowired
-  public WalletQueryController(WalletQueryService walletQueryService) {
-    this.walletQueryService = walletQueryService;
-  }
+    @Autowired
+    public WalletQueryController(WalletQueryService walletQueryService) {
+        this.walletQueryService = walletQueryService;
+    }
 
-  @GetMapping("/wallet-balance")
-  public ResponseEntity<List<WalletBalanceModel>> getLatestPrices() {
-    return ResponseEntity.ok(walletQueryService.getWalletBalances());
-  }
+    @GetMapping("/wallet-balances")
+    public ResponseEntity<List<WalletBalanceModel>> getLatestPrices() {
+        return ResponseEntity.ok(walletQueryService.getWalletBalances());
+    }
 }
