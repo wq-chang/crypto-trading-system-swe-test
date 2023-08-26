@@ -1,6 +1,5 @@
 package com.quan.cryptotradingsystem.model;
 
-
 public class WalletBalanceModel {
 
   String cryptoCode;

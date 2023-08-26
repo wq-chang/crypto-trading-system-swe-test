@@ -10,37 +10,37 @@ import java.math.BigDecimal;
 @Table(name = "prices")
 public class Price {
 
-  @Id
-  @Column(name = "symbol")
-  private String symbol;
+    @Id
+    @Column(name = "symbol")
+    private String symbol;
 
-  @Column(name = "bid", precision = 30, scale = 15)
-  private BigDecimal bid;
+    @Column(name = "bid", precision = 36, scale = 18)
+    private BigDecimal bid;
 
-  @Column(name = "ask", precision = 30, scale = 15)
-  private BigDecimal ask;
+    @Column(name = "ask", precision = 36, scale = 18)
+    private BigDecimal ask;
 
-  public String getSymbol() {
-    return symbol;
-  }
+    public String getSymbol() {
+        return symbol;
+    }
 
-  public void setSymbol(String symbol) {
-    this.symbol = symbol;
-  }
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
 
-  public BigDecimal getBid() {
-    return bid;
-  }
+    public BigDecimal getBid() {
+        return bid;
+    }
 
-  public void setBid(BigDecimal bid) {
-    this.bid = bid;
-  }
+    public void setBid(BigDecimal bid) {
+        this.bid = bid;
+    }
 
-  public BigDecimal getAsk() {
-    return ask;
-  }
+    public BigDecimal getAsk() {
+        return ask;
+    }
 
-  public void setAsk(BigDecimal ask) {
-    this.ask = ask;
-  }
+    public void setAsk(BigDecimal ask) {
+        this.ask = ask;
+    }
 }
