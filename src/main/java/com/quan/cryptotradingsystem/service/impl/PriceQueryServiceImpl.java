@@ -1,9 +1,9 @@
 package com.quan.cryptotradingsystem.service.impl;
 
 import com.quan.cryptotradingsystem.model.PriceModel;
+import com.quan.cryptotradingsystem.repository.PriceRepo;
 import com.quan.cryptotradingsystem.service.PriceQueryService;
 import com.quan.cryptotradingsystem.service.mapper.PriceMapper;
-import com.quan.cryptotradingsystem.service.repository.PriceRepo;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
