@@ -22,9 +22,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class PriceCommandServiceImpl implements PriceCommandService {
 
-  @Value("#{'${app.allowed-symbols}'.split(',')}")
-  private List<String> allowedSymbols;
-
   @Value("${app.api.timeout}")
   private long timeout;
 
@@ -63,9 +60,7 @@ public class PriceCommandServiceImpl implements PriceCommandService {
   private List<PriceModel> fetchLatestPricesByApi(Supplier<List<PriceModel>> fetchPrices) {
     var pricesModels = fetchPrices.get();
 
-    return pricesModels.stream()
-        .filter(p -> allowedSymbols.contains(p.getSymbol()))
-        .collect(Collectors.toList());
+    return pricesModels.stream().collect(Collectors.toList());
   }
 
   private List<PriceModel> getPriceModelsFromFuture(
