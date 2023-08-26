@@ -3,7 +3,6 @@ package com.quan.cryptotradingsystem.controller;
 import com.quan.cryptotradingsystem.model.TradeOrderModel;
 import com.quan.cryptotradingsystem.model.WalletBalanceModel;
 import com.quan.cryptotradingsystem.service.TradeCommandService;
-import com.quan.cryptotradingsystem.service.WalletQueryService;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,19 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class TradeCommandController {
 
     private final TradeCommandService tradeCommandService;
-    private final WalletQueryService walletQueryService;
 
     @Autowired
-    public TradeCommandController(
-            TradeCommandService tradeCommandService, WalletQueryService walletQueryService) {
+    public TradeCommandController(TradeCommandService tradeCommandService) {
         this.tradeCommandService = tradeCommandService;
-        this.walletQueryService = walletQueryService;
     }
 
     @PostMapping("/trade")
     public ResponseEntity<List<WalletBalanceModel>> getLatestPrices(
             @Valid @RequestBody TradeOrderModel tradeOrderModel) {
         tradeCommandService.exchangeCrypto(tradeOrderModel);
-        return ResponseEntity.ok(walletQueryService.getWalletBalances());
+        return ResponseEntity.ok().build();
     }
 }
