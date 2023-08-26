@@ -12,3 +12,5 @@ spring:
 app:
   biance:
     url: https://api.binance.com/api/v3/ticker/bookTicker
+  huoBi:
+    url: https://api.huobi.pro/market/tickers
