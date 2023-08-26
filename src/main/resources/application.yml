@@ -26,3 +26,5 @@ app:
       url: https://api.huobi.pro/market/tickers
     timeout: 8
   allowed-symbols: BTCUSDT,ETHUSDT
+  quartz:
+    fetch-price-cron: 0/10 * * * * *
