@@ -17,7 +17,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Service("biance")
 public class BianceAdapterImpl implements PriceAdapter {
 
-    @Value("${app.biance.url}")
+    @Value("${app.api.biance.url}")
     private String url;
 
     private final WebClient client;

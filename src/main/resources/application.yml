@@ -18,8 +18,10 @@ spring:
       path: /h2
 
 app:
-  biance:
-    url: https://api.binance.com/api/v3/ticker/bookTicker
-  huoBi:
-    url: https://api.huobi.pro/market/tickers
+  api:
+    biance:
+      url: https://api.binance.com/api/v3/ticker/bookTicker
+    huoBi:
+      url: https://api.huobi.pro/market/tickers
+    timeout: 8
   allowed-symbols: BTCUSDT,ETHUSDT

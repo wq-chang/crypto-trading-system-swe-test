@@ -15,7 +15,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Service("huoBi")
 public class HuoBiAdapterImpl implements PriceAdapter {
 
-    @Value("${app.huoBi.url}")
+    @Value("${app.api.huoBi.url}")
     private String url;
 
     private final WebClient client;
