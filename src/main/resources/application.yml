@@ -8,16 +8,14 @@ spring:
     spring:
       jpa:
         database-platform: org.hibernate.dialect.H2Dialect
-    properties:
-      javax:
-        persistence:
-          schema-generation:
-            create-source: metadata
-            scripts:
-              action: create
-              create-target: create.sql
+    hibernate:
+      ddl-auto: update
   codec:
     max-in-memory-size: 500KB
+  h2:
+    console:
+      enabled: true
+      path: /h2
 
 app:
   biance:
