@@ -1,8 +1,7 @@
 package com.quan.cryptotradingsystem.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
@@ -12,11 +11,13 @@ import java.math.BigDecimal;
 public class Price {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
-
+  @Column(name = "symbol")
   private String symbol;
+
+  @Column(name = "bid", precision = 30, scale = 15)
   private BigDecimal bid;
+
+  @Column(name = "ask", precision = 30, scale = 15)
   private BigDecimal ask;
 
   public String getSymbol() {
