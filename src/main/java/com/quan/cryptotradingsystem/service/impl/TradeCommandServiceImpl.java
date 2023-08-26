@@ -112,6 +112,7 @@ public class TradeCommandServiceImpl implements TradeCommandService {
         toWalletBalance.setBalance(toWalletBalance.getBalance().add(toAmount));
 
         var order = new Order(
+                tradeOrderModel.getSymbol(),
                 fromWalletBalance,
                 tradeOrderModel.getAmount(),
                 fromWalletBalance.getBalance(),

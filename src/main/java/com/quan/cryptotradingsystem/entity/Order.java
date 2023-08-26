@@ -28,6 +28,9 @@ public class Order {
     @Column(name = "ref_id", nullable = false, unique = true)
     private UUID refId;
 
+    @Column(name = "symbol", nullable = false)
+    private String symbol;
+
     @ManyToOne
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "from_wallet_balance_id", nullable = false)
@@ -64,6 +67,7 @@ public class Order {
     }
 
     public Order(
+            String symbol,
             WalletBalance fromWalletBalance,
             BigDecimal fromTransactionAmount,
             BigDecimal fromAmount,
@@ -74,6 +78,7 @@ public class Order {
             Action action,
             LocalDateTime transactionDateTime) {
         this.refId = UUID.randomUUID();
+        this.symbol = symbol;
         this.fromWalletBalance = fromWalletBalance;
         this.fromTransactionAmount = fromTransactionAmount;
         this.fromAmount = fromAmount;
@@ -82,6 +87,102 @@ public class Order {
         this.toAmount = toAmount;
         this.price = price;
         this.action = action;
+        this.transactionDateTime = transactionDateTime;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public UUID getRefId() {
+        return refId;
+    }
+
+    public void setRefId(UUID refId) {
+        this.refId = refId;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
+    public WalletBalance getFromWalletBalance() {
+        return fromWalletBalance;
+    }
+
+    public void setFromWalletBalance(WalletBalance fromWalletBalance) {
+        this.fromWalletBalance = fromWalletBalance;
+    }
+
+    public BigDecimal getFromTransactionAmount() {
+        return fromTransactionAmount;
+    }
+
+    public void setFromTransactionAmount(BigDecimal fromTransactionAmount) {
+        this.fromTransactionAmount = fromTransactionAmount;
+    }
+
+    public BigDecimal getFromAmount() {
+        return fromAmount;
+    }
+
+    public void setFromAmount(BigDecimal fromAmount) {
+        this.fromAmount = fromAmount;
+    }
+
+    public WalletBalance getToWalletBalance() {
+        return toWalletBalance;
+    }
+
+    public void setToWalletBalance(WalletBalance toWalletBalance) {
+        this.toWalletBalance = toWalletBalance;
+    }
+
+    public BigDecimal getToTransactionAmount() {
+        return toTransactionAmount;
+    }
+
+    public void setToTransactionAmount(BigDecimal toTransactionAmount) {
+        this.toTransactionAmount = toTransactionAmount;
+    }
+
+    public BigDecimal getToAmount() {
+        return toAmount;
+    }
+
+    public void setToAmount(BigDecimal toAmount) {
+        this.toAmount = toAmount;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Action getAction() {
+        return action;
+    }
+
+    public void setAction(Action action) {
+        this.action = action;
+    }
+
+    public LocalDateTime getTransactionDateTime() {
+        return transactionDateTime;
+    }
+
+    public void setTransactionDateTime(LocalDateTime transactionDateTime) {
         this.transactionDateTime = transactionDateTime;
     }
 }
