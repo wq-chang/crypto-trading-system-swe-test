@@ -19,21 +19,53 @@ import org.hibernate.annotations.FetchMode;
 @Table(name = "wallets")
 public class Wallet {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id")
+  private long id;
 
-    @Column(name = "address")
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID address;
+  @Column(name = "address")
+  @GeneratedValue(strategy = GenerationType.UUID)
+  private UUID address;
 
-    @OneToOne
-    @Fetch(FetchMode.JOIN)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+  @OneToOne
+  @Fetch(FetchMode.JOIN)
+  @JoinColumn(name = "user_id", nullable = false)
+  private User user;
 
-    @OneToMany(mappedBy = "wallet", fetch = FetchType.EAGER)
-    @Fetch(FetchMode.JOIN)
-    private List<WalletBalance> balances;
+  @OneToMany(mappedBy = "wallet", fetch = FetchType.EAGER)
+  @Fetch(FetchMode.JOIN)
+  private List<WalletBalance> balances;
+
+  public long getId() {
+    return id;
+  }
+
+  public void setId(long id) {
+    this.id = id;
+  }
+
+  public UUID getAddress() {
+    return address;
+  }
+
+  public void setAddress(UUID address) {
+    this.address = address;
+  }
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
+
+  public List<WalletBalance> getBalances() {
+    return balances;
+  }
+
+  public void setBalances(List<WalletBalance> balances) {
+    this.balances = balances;
+  }
 }

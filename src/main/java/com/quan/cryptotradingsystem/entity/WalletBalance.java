@@ -16,21 +16,52 @@ import org.hibernate.annotations.FetchMode;
 @Table(name = "wallet_balances")
 public class WalletBalance {
 
-    @EmbeddedId
-    private WalletBalanceId id;
+  @EmbeddedId private WalletBalanceId id;
 
-    @Column(name = "balance", precision = 30, scale = 15)
-    BigDecimal balance;
+  @Column(name = "balance", precision = 30, scale = 15)
+  BigDecimal balance;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @MapsId("walletId")
-    @Fetch(FetchMode.JOIN)
-    @JoinColumn(name = "wallet_id", nullable = false)
-    private Wallet wallet;
+  @ManyToOne(fetch = FetchType.EAGER)
+  @MapsId("walletId")
+  @Fetch(FetchMode.JOIN)
+  @JoinColumn(name = "wallet_id", nullable = false)
+  private Wallet wallet;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @MapsId("supportedCryptoId")
-    @Fetch(FetchMode.JOIN)
-    @JoinColumn(name = "supported_crypto_id", nullable = false)
-    private SupportedCrypto supportedCrypto;
+  @ManyToOne(fetch = FetchType.EAGER)
+  @MapsId("supportedCryptoId")
+  @Fetch(FetchMode.JOIN)
+  @JoinColumn(name = "supported_crypto_id", nullable = false)
+  private SupportedCrypto supportedCrypto;
+
+  public WalletBalanceId getId() {
+    return id;
+  }
+
+  public void setId(WalletBalanceId id) {
+    this.id = id;
+  }
+
+  public BigDecimal getBalance() {
+    return balance;
+  }
+
+  public void setBalance(BigDecimal balance) {
+    this.balance = balance;
+  }
+
+  public Wallet getWallet() {
+    return wallet;
+  }
+
+  public void setWallet(Wallet wallet) {
+    this.wallet = wallet;
+  }
+
+  public SupportedCrypto getSupportedCrypto() {
+    return supportedCrypto;
+  }
+
+  public void setSupportedCrypto(SupportedCrypto supportedCrypto) {
+    this.supportedCrypto = supportedCrypto;
+  }
 }

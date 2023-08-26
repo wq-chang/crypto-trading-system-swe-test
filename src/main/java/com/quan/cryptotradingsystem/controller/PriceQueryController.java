@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PriceQueryController {
 
-  private PriceQueryService priceQueryService;
+  private final PriceQueryService priceQueryService;
 
   @Autowired
   public PriceQueryController(PriceQueryService priceQueryService) {
