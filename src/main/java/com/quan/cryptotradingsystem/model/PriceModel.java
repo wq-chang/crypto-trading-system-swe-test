@@ -5,9 +5,7 @@ import java.math.BigDecimal;
 public class PriceModel {
   private String symbol;
   private BigDecimal bid;
-  private BigDecimal bidSize;
   private BigDecimal ask;
-  private BigDecimal askSize;
 
   public String getSymbol() {
     return symbol;
@@ -25,27 +23,11 @@ public class PriceModel {
     this.bid = bid;
   }
 
-  public BigDecimal getBidSize() {
-    return bidSize;
-  }
-
-  public void setBidSize(BigDecimal bidSize) {
-    this.bidSize = bidSize;
-  }
-
   public BigDecimal getAsk() {
     return ask;
   }
 
   public void setAsk(BigDecimal ask) {
     this.ask = ask;
-  }
-
-  public BigDecimal getAskSize() {
-    return askSize;
-  }
-
-  public void setAskSize(BigDecimal askSize) {
-    this.askSize = askSize;
   }
 }
