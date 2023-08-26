@@ -15,30 +15,28 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Service("huoBi")
 public class HuoBiAdapterImpl implements PriceAdapter {
 
-  @Value("${app.huoBi.url}")
-  String url;
+    @Value("${app.huoBi.url}")
+    private String url;
 
-  private final WebClient client;
+    private final WebClient client;
 
-  @Autowired
-  public HuoBiAdapterImpl(WebClient.Builder clientBuilder) {
-    this.client = clientBuilder.build();
-  }
+    @Autowired
+    public HuoBiAdapterImpl(WebClient.Builder clientBuilder) {
+        this.client = clientBuilder.build();
+    }
 
-  @Override
-  public List<PriceModel> fetchLatestPrices() {
-    var monoObjects =
-        this.client
-            .get()
-            .uri(url)
-            .accept(MediaType.APPLICATION_JSON)
-            .retrieve()
-            .bodyToMono(HuoBiResponseModel.class)
-            .log();
-    var huobiResponse = monoObjects.block();
+    @Override
+    public List<PriceModel> fetchLatestPrices() {
+        var monoObjects = this.client
+                .get()
+                .uri(url)
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .bodyToMono(HuoBiResponseModel.class);
+        var huobiResponse = monoObjects.block();
 
-    return huobiResponse.getData().stream()
-        .map(PriceMapper.INSTANCE::huoBiPriceToPriceModel)
-        .collect(Collectors.toList());
-  }
+        return huobiResponse.getData().stream()
+                .map(PriceMapper.INSTANCE::huoBiPriceToPriceModel)
+                .collect(Collectors.toList());
+    }
 }

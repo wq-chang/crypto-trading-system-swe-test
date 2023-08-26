@@ -17,32 +17,30 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Service("biance")
 public class BianceAdapterImpl implements PriceAdapter {
 
-  @Value("${app.biance.url}")
-  String url;
+    @Value("${app.biance.url}")
+    private String url;
 
-  private final WebClient client;
+    private final WebClient client;
 
-  @Autowired
-  public BianceAdapterImpl(WebClient.Builder clientBuilder) {
-    this.client = clientBuilder.build();
-  }
+    @Autowired
+    public BianceAdapterImpl(WebClient.Builder clientBuilder) {
+        this.client = clientBuilder.build();
+    }
 
-  @Override
-  public List<PriceModel> fetchLatestPrices() {
-    var monoObjects =
-        this.client
-            .get()
-            .uri(url)
-            .accept(MediaType.APPLICATION_JSON)
-            .retrieve()
-            .bodyToMono(Object[].class)
-            .log();
-    var objects = monoObjects.block();
-    var objectMapper = new ObjectMapper();
+    @Override
+    public List<PriceModel> fetchLatestPrices() {
+        var monoObjects = this.client
+                .get()
+                .uri(url)
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .bodyToMono(Object[].class);
+        var objects = monoObjects.block();
+        var objectMapper = new ObjectMapper();
 
-    return Arrays.stream(objects)
-        .map(o -> objectMapper.convertValue(o, BiancePriceModel.class))
-        .map(PriceMapper.INSTANCE::biancePriceToPriceModel)
-        .collect(Collectors.toList());
-  }
+        return Arrays.stream(objects)
+                .map(o -> objectMapper.convertValue(o, BiancePriceModel.class))
+                .map(PriceMapper.INSTANCE::biancePriceToPriceModel)
+                .collect(Collectors.toList());
+    }
 }
