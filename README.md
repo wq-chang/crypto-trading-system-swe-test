@@ -56,3 +56,5 @@
 > GET http://localhost:8080/order-histories
 
 ---
+
+END
