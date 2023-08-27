@@ -14,6 +14,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,8 +24,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class PriceCommandServiceImpl implements PriceCommandService {
 
+    private final Logger logger = LoggerFactory.getLogger(PriceCommandServiceImpl.class);
+
     @Value("${app.api.timeout}")
     private long timeout;
+
+    @Value("#{'${app.allowed-symbols}'.split(',')}")
+    private List<String> allowedSymbols;
 
     private final PriceAdapter bianceAdapter;
     private final PriceAdapter huoBiAdapter;
@@ -57,7 +64,9 @@ public class PriceCommandServiceImpl implements PriceCommandService {
     private List<PriceModel> fetchLatestPricesByApi(Supplier<List<PriceModel>> fetchPrices) {
         var pricesModels = fetchPrices.get();
 
-        return pricesModels.stream().collect(Collectors.toList());
+        return pricesModels.stream()
+                .filter(p -> allowedSymbols.contains(p.getSymbol()))
+                .collect(Collectors.toList());
     }
 
     private List<PriceModel> getPriceModelsFromFuture(
@@ -72,6 +81,12 @@ public class PriceCommandServiceImpl implements PriceCommandService {
     private Map<String, Price> groupBestPriceBySymbol(List<PriceModel> priceModels) {
         var priceMap = new HashMap<String, Price>();
         for (var priceModel : priceModels) {
+            logger.info(
+                    "Symbol: {}, Bid: {}, Ask: {}",
+                    priceModel.getSymbol(),
+                    priceModel.getBid(),
+                    priceModel.getAsk());
+
             var symbol = priceModel.getSymbol();
             if (!priceMap.containsKey(symbol)) {
                 priceMap.put(symbol, PriceMapper.INSTANCE.priceModelToPrice(priceModel));
@@ -79,7 +94,7 @@ public class PriceCommandServiceImpl implements PriceCommandService {
             }
             var price = priceMap.get(symbol);
             price.setAsk(price.getAsk().min(priceModel.getAsk()));
-            price.setBid(price.getBid().min(priceModel.getBid()));
+            price.setBid(price.getBid().max(priceModel.getBid()));
         }
         return priceMap;
     }

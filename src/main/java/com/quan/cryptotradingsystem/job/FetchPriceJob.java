@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class FetchPriceJob {
 
-    Logger logger = LoggerFactory.getLogger(FetchPriceJob.class);
+    private final Logger logger = LoggerFactory.getLogger(FetchPriceJob.class);
 
     private final PriceCommandService priceCommandService;
 
