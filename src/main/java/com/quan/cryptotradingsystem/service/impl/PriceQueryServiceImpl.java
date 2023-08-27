@@ -12,18 +12,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class PriceQueryServiceImpl implements PriceQueryService {
 
-  private final PriceRepo priceRepo;
+    private final PriceRepo priceRepo;
 
-  public PriceQueryServiceImpl(PriceRepo priceRepo) {
-    this.priceRepo = priceRepo;
-  }
+    public PriceQueryServiceImpl(PriceRepo priceRepo) {
+        this.priceRepo = priceRepo;
+    }
 
-  @Override
-  @Transactional(readOnly = true)
-  public List<PriceModel> getBestPrices() {
-    var prices = priceRepo.findAll();
-    return prices.stream()
-        .map(PriceMapper.INSTANCE::priceToPriceModel)
-        .collect(Collectors.toList());
-  }
+    @Override
+    @Transactional(readOnly = true)
+    public List<PriceModel> getBestPrices() {
+        var prices = priceRepo.findAll();
+        return prices.stream()
+                .map(PriceMapper.INSTANCE::priceToPriceModel)
+                .collect(Collectors.toList());
+    }
 }

@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface WalletRepo extends JpaRepository<Wallet, Long> {
 
-  Optional<Wallet> findByUserId(long userId);
+    Optional<Wallet> findByUserId(long userId);
 }

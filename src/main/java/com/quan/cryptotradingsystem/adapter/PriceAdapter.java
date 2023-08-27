@@ -4,5 +4,6 @@ import com.quan.cryptotradingsystem.model.PriceModel;
 import java.util.List;
 
 public interface PriceAdapter {
-  List<PriceModel> fetchLatestPrices();
+
+    List<PriceModel> fetchLatestPrices();
 }

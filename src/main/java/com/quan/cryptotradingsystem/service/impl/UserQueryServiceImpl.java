@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserQueryServiceImpl implements UserQueryService {
 
-  @Override
-  public long getLoginUserId() {
-    return 1;
-  }
+    @Override
+    public long getLoginUserId() {
+        return 1;
+    }
 }

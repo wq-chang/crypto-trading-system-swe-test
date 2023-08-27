@@ -11,16 +11,16 @@ import org.mapstruct.factory.Mappers;
 @Mapper
 public interface PriceMapper {
 
-  PriceMapper INSTANCE = Mappers.getMapper(PriceMapper.class);
+    PriceMapper INSTANCE = Mappers.getMapper(PriceMapper.class);
 
-  @Mapping(source = "bidPrice", target = "bid")
-  @Mapping(source = "askPrice", target = "ask")
-  PriceModel biancePriceToPriceModel(BiancePriceModel biancePriceModel);
+    @Mapping(source = "bidPrice", target = "bid")
+    @Mapping(source = "askPrice", target = "ask")
+    PriceModel biancePriceToPriceModel(BiancePriceModel biancePriceModel);
 
-  @Mapping(target = "symbol", expression = "java(huoBiPriceModel.getSymbol().toUpperCase())")
-  PriceModel huoBiPriceToPriceModel(HuoBiPriceModel huoBiPriceModel);
+    @Mapping(target = "symbol", expression = "java(huoBiPriceModel.getSymbol().toUpperCase())")
+    PriceModel huoBiPriceToPriceModel(HuoBiPriceModel huoBiPriceModel);
 
-  Price priceModelToPrice(PriceModel priceModel);
+    Price priceModelToPrice(PriceModel priceModel);
 
-  PriceModel priceToPriceModel(Price price);
+    PriceModel priceToPriceModel(Price price);
 }

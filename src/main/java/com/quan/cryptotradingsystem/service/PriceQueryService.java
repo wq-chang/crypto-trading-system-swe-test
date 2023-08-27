@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface PriceQueryService {
 
-  List<PriceModel> getBestPrices();
+    List<PriceModel> getBestPrices();
 }
