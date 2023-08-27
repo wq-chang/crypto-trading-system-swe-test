@@ -11,10 +11,10 @@ public class OrderHistoryModel {
     private String symbol;
     private String fromCryptoCode;
     private BigDecimal fromTransactionAmount;
-    private BigDecimal fromAmount;
+    private BigDecimal fromBalance;
     private String toCryptoCode;
     private BigDecimal toTransactionAmount;
-    private BigDecimal toAmount;
+    private BigDecimal toBalance;
     private BigDecimal price;
     private Action action;
     private LocalDateTime transactionDateTime;
@@ -51,12 +51,12 @@ public class OrderHistoryModel {
         this.fromTransactionAmount = fromTransactionAmount;
     }
 
-    public BigDecimal getFromAmount() {
-        return fromAmount;
+    public BigDecimal getFromBalance() {
+        return fromBalance;
     }
 
-    public void setFromAmount(BigDecimal fromAmount) {
-        this.fromAmount = fromAmount;
+    public void setFromBalance(BigDecimal fromBalance) {
+        this.fromBalance = fromBalance;
     }
 
     public String getToCryptoCode() {
@@ -75,12 +75,12 @@ public class OrderHistoryModel {
         this.toTransactionAmount = toTransactionAmount;
     }
 
-    public BigDecimal getToAmount() {
-        return toAmount;
+    public BigDecimal getToBalance() {
+        return toBalance;
     }
 
-    public void setToAmount(BigDecimal toAmount) {
-        this.toAmount = toAmount;
+    public void setToBalance(BigDecimal toAmount) {
+        this.toBalance = toAmount;
     }
 
     public BigDecimal getPrice() {

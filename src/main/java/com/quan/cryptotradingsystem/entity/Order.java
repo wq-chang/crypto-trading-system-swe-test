@@ -39,8 +39,8 @@ public class Order {
     @Column(name = "from_transaction_amount", nullable = false, precision = 36, scale = 18)
     private BigDecimal fromTransactionAmount;
 
-    @Column(name = "from_amount", nullable = false, precision = 36, scale = 18)
-    private BigDecimal fromAmount;
+    @Column(name = "from_balance", nullable = false, precision = 36, scale = 18)
+    private BigDecimal fromBalance;
 
     @ManyToOne
     @Fetch(FetchMode.JOIN)
@@ -50,8 +50,8 @@ public class Order {
     @Column(name = "to_transaction_amount", nullable = false, precision = 36, scale = 18)
     private BigDecimal toTransactionAmount;
 
-    @Column(name = "to_amount", nullable = false, precision = 36, scale = 18)
-    private BigDecimal toAmount;
+    @Column(name = "to_balance", nullable = false, precision = 36, scale = 18)
+    private BigDecimal toBalance;
 
     @Column(name = "price", nullable = false, precision = 36, scale = 18)
     private BigDecimal price;
@@ -70,10 +70,10 @@ public class Order {
             String symbol,
             WalletBalance fromWalletBalance,
             BigDecimal fromTransactionAmount,
-            BigDecimal fromAmount,
+            BigDecimal fromBalance,
             WalletBalance toWalletBalance,
             BigDecimal toTransactionAmount,
-            BigDecimal toAmount,
+            BigDecimal toBalance,
             BigDecimal price,
             Action action,
             LocalDateTime transactionDateTime) {
@@ -81,10 +81,10 @@ public class Order {
         this.symbol = symbol;
         this.fromWalletBalance = fromWalletBalance;
         this.fromTransactionAmount = fromTransactionAmount;
-        this.fromAmount = fromAmount;
+        this.fromBalance = fromBalance;
         this.toWalletBalance = toWalletBalance;
         this.toTransactionAmount = toTransactionAmount;
-        this.toAmount = toAmount;
+        this.toBalance = toBalance;
         this.price = price;
         this.action = action;
         this.transactionDateTime = transactionDateTime;
@@ -130,12 +130,12 @@ public class Order {
         this.fromTransactionAmount = fromTransactionAmount;
     }
 
-    public BigDecimal getFromAmount() {
-        return fromAmount;
+    public BigDecimal getFromBalance() {
+        return fromBalance;
     }
 
-    public void setFromAmount(BigDecimal fromAmount) {
-        this.fromAmount = fromAmount;
+    public void setFromBalance(BigDecimal fromBalance) {
+        this.fromBalance = fromBalance;
     }
 
     public WalletBalance getToWalletBalance() {
@@ -154,12 +154,12 @@ public class Order {
         this.toTransactionAmount = toTransactionAmount;
     }
 
-    public BigDecimal getToAmount() {
-        return toAmount;
+    public BigDecimal getToBalance() {
+        return toBalance;
     }
 
-    public void setToAmount(BigDecimal toAmount) {
-        this.toAmount = toAmount;
+    public void setToBalance(BigDecimal toBalance) {
+        this.toBalance = toBalance;
     }
 
     public BigDecimal getPrice() {
