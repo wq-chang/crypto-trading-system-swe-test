@@ -28,3 +28,7 @@ app:
   allowed-symbols: BTCUSDT,ETHUSDT
   quartz:
     fetch-price-cron: 0/10 * * * * *
+
+server:
+  error:
+    include-message: always
